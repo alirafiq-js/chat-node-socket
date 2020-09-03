@@ -1,0 +1,21 @@
+{
+    "enviroment": "local",
+    "name": "CA-CHAT-SERVER",
+    "version": "0.0.1",
+    "server": {
+        "port": 3300
+    },
+    "secret": "19AAAA8888WW",
+    "database": {
+        "mongodb": {
+            "uri": "mongodb+srv://cachatuser:cFpJhoYHpeGzf0js@cluster0-8uya3.mongodb.net/test?retryWrites=true&w=majority",
+            "port": 27017,
+            "debug": true,
+            "dbname": "ca-chat"
+        },
+        "redis": {
+            "host": "localhost",
+            "port": 6379
+        }
+    }
+}

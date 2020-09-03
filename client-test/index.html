@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="socket-testing">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Socket Testing</title>
+    <link href="/js/bootstrap.min.css" rel="stylesheet" />
+    <link href="/bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div ng-controller="socketTest" class="rows">
+
+        <input type="text" ng-model="update" style="display: none;">
+        <div class="row">
+            <div class="col-sm-3">
+                <input ng-model="url" placeholder="Connection URL" class="form-control">
+            </div>
+            <div class="col-sm-5">
+                <input ng-model="query" placeholder="Shake Hand Query" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-success" ng-click="connection(this.user, this.user)">Connect</button>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-success" ng-click="disconnect()">DisConnect</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <input ng-model="msg" placeholder="Message" class="form-control">
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-success" ng-click="sendMessage()">Send</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <input ng-model="createRoomObj.customerID" placeholder="CustomerID" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <input ng-model="createRoomObj.vendorID" placeholder="vendorID" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <input ng-model="createRoomObj.roomID" placeholder="roomID" class="form-control">
+            </div>
+            <div class="col-sm-2">
+                <input ng-model="createRoomObj.roomToken" placeholder="roomToken" class="form-control">
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-success" ng-click="createRoom()">Create</button>
+            </div>
+
+        </div>
+        <div class="container">
+            <table class="table">
+                <tr>
+                    <th>vendorID</th>
+                    <th>customerID</th>
+                    <th>roomID</th>
+                    <th>roomToken</th>
+                    <th>Action</th>
+                </tr>
+                <tr ng-repeat="room in rooms">
+                    <td>{{room.vendorID}}</td>
+                    <td>{{room.customerID}}</td>
+                    <td>{{room.roomID}}</td>
+                    <td>{{room.roomToken}}</td>
+                    <td><button class="success" ng-click="joinRoom(room)">Show history</button></td>
+                </tr>
+            </table>
+        </div>
+        <div class="row" style="margin:10px">
+            <div ng-repeat="joined in joinedRoom" class="col-sm-5">
+                <div class="row" style="text-align: center;">
+
+                    {{joined.title}}
+                    <button class="danger" ng-click="leaveRoom(joined.roomToken)">Leave</button>
+                </div>
+                <div class="row" style="height: 200px; border: 2px solid #dddddd;">
+                    <div class="col-sm-9" style="height: 200px; overflow: hidden;  border-right: 1px solid #eeeeee;">
+                        <div class="row" style="height: 160px; overflow: hidden; overflow-y: scroll;">
+                        </div>
+                        <div class="row" style="height: 40px; overflow: hidden; bottom: 0px;  ">
+
+                            <button class="primary " ng-click="sendMessage(joined)">SEND {{joined.roomToken}}</button>
+                            <input class="" ng-change="typing(joined)" style="width: 80%;" ng-model="message[joined._id].message" />
+                        </div>
+ 
+                    </div>
+                    <div class="col-sm-3"
+                        style="height: 200px; overflow: hidden; overflow-y: scroll; border-right: 1px solid #eeeeee;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="/js/socket.io.dev.js"></script>
+<script src="/js/jquery-2.2.4.min.js"></script>
+<script src="/js/angular.1.6.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="/js/angular.animate.js"></script>
+<script src="/js/angular.sanitize.js"></script>
+
+<script src="/js/snr.js"></script>
+
+</html>
