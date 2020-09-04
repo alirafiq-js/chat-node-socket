@@ -8,7 +8,7 @@
     "secret": "19AAAA8888WW",
     "database": {
         "mongodb": {
-            "uri": "mongodb+srv://cachatuser:cFpJhoYHpeGzf0js@cluster0-8uya3.mongodb.net/test?retryWrites=true&w=majority",
+            "uri": "",
             "port": 27017,
             "debug": true,
             "dbname": "ca-chat"
